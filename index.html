@@ -228,12 +228,12 @@
 
 <script>
 
-function searchPeople() {
-    alert("Search feature coming soon!");
-}
-
 function viewProfile(name) {
-    window.location.href = "ananya.html";
+    if (name === "Ananya") {
+        window.location.href = "ananya.html";
+    } else {
+        alert("Profile for " + name + " coming soon!");
+    }
 }
 
 </script>
