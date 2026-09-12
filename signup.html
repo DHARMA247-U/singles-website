@@ -86,7 +86,7 @@
 
     <p>Join Singles Connect</p>
 
-    <form onsubmit="signupUser(event)">
+    <form id="signupForm">
 
         <label>Name</label>
         <input type="text" id="name" placeholder="Enter your name" required>
@@ -152,6 +152,7 @@ async function signupUser(event) {
         alert("Something went wrong: " + err.message);
     }
 }
+document.getElementById("signupForm").addEventListener("submit", signupUser);    
 </script>
 
 
