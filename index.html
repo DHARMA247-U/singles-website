@@ -227,7 +227,22 @@
 </footer>
 
 <script>
+function searchPeople() {
+    let search = document.querySelector(".search-box input").value.toLowerCase().trim();
 
+    let profiles = document.querySelectorAll(".profile");
+
+    profiles.forEach(function(profile) {
+        let name = profile.querySelector("h3").textContent.toLowerCase();
+        let city = profile.querySelector("p").textContent.toLowerCase();
+
+        if (name.includes(search) || city.includes(search)) {
+            profile.style.display = "block";
+        } else {
+            profile.style.display = "none";
+        }
+    });
+}
 function viewProfile(name) {
     if (name === "Ananya") {
         window.location.href = "ananya.html";
