@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Singles Connect</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 90px 20px;
+            background: white;
+        }
+
+        .hero h2 {
+            font-size: 46px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            max-width: 700px;
+            margin: auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .search-box button {
+            padding: 16px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #e91e63;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .section {
+            padding: 60px 8%;
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .profiles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .profile {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            margin: auto auto 15px;
+            border-radius: 50%;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 35px;
+        }
+
+        .profile h3 {
+            margin-bottom: 8px;
+        }
+
+        .profile p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .profile button {
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            background: #111;
+            color: white;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #111;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .hero h2 {
+                font-size: 34px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Singles Connect</h1>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Find Singles</a>
+        <a href="#">Login</a>
+    </nav>
+</header>
+
+<section class="hero">
+
+    <h2>Find Your Connection</h2>
+
+    <p>
+        Discover people, start conversations and build meaningful connections.
+    </p>
+
+    <div class="search-box">
+        <input type="text" placeholder="Search by name or city">
+        <button onclick="searchPeople()">Search</button>
+    </div>
+
+</section>
+
+<section class="section">
+
+    <h2>Featured Singles</h2>
+
+    <div class="profiles">
+
+        <div class="profile">
+            <div class="avatar">👤</div>
+            <h3>Rahul, 27</h3>
+            <p>Bengaluru</p>
+            <button onclick="viewProfile('Rahul')">
+                View Profile
+            </button>
+        </div>
+
+        <div class="profile">
+            <div class="avatar">👤</div>
+            <h3>Ananya, 25</h3>
+            <p>Bhubaneswar</p>
+            <button onclick="viewProfile('Ananya')">
+                View Profile
+            </button>
+        </div>
+
+        <div class="profile">
+            <div class="avatar">👤</div>
+            <h3>Arjun, 29</h3>
+            <p>Mumbai</p>
+            <button onclick="viewProfile('Arjun')">
+                View Profile
+            </button>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2026 Singles Connect</p>
+</footer>
+
+<script>
+
+function searchPeople() {
+    alert("Search feature coming soon!");
+}
+
+function viewProfile(name) {
+    alert("Profile for " + name + " coming soon!");
+}
+
+</script>
+
+</body>
+</html>
