@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile - Singles Connect</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f7f7f7;
+            padding: 30px 15px;
+        }
+
+        .profile-box {
+            background: white;
+            width: 90%;
+            max-width: 500px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #e91e63;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #d81b60;
+        }
+
+        .home {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #e91e63;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="profile-box">
+
+    <h1>My Profile</h1>
+
+    <p class="subtitle">
+        Tell people a little about yourself
+    </p>
+
+    <form id="profileForm">
+
+        <label for="name">Name</label>
+        <input
+            type="text"
+            id="name"
+            placeholder="Enter your name"
+            required
+        >
+
+        <label for="age">Age</label>
+        <input
+            type="number"
+            id="age"
+            placeholder="Enter your age"
+            min="18"
+            max="100"
+            required
+        >
+
+        <label for="city">City</label>
+        <input
+            type="text"
+            id="city"
+            placeholder="Enter your city"
+            required
+        >
+
+        <label for="gender">Gender</label>
+        <select id="gender" required>
+            <option value="">Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label for="lookingFor">Looking for</label>
+        <select id="lookingFor" required>
+            <option value="">Select</option>
+            <option value="Men">Men</option>
+            <option value="Women">Women</option>
+            <option value="Everyone">Everyone</option>
+        </select>
+
+        <label for="interests">Interests</label>
+        <input
+            type="text"
+            id="interests"
+            placeholder="Music, travel, movies..."
+        >
+
+        <label for="about">About Me</label>
+        <textarea
+            id="about"
+            placeholder="Tell people about yourself"
+        ></textarea>
+
+        <button type="submit">
+            Save Profile
+        </button>
+
+    </form>
+
+    <a href="index.html" class="home">
+        ← Back to Home
+    </a>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+    "https://hzlbpkxetsosxazhxtit.supabase.co";
+
+const SUPABASE_KEY =
+    "sb_publishable_Re15CBdLhXfFKLbee_037g_kx9G-W-8";
+
+const supabaseClient =
+    window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+async function checkLogin() {
+
+    const {
+        data: { user }
+    } = await supabaseClient.auth.getUser();
+
+    if (!user) {
+        alert("Please login first.");
+        window.location.href = "login.html";
+    }
+}
+
+
+checkLogin();
+
+
+document
+    .getElementById("profileForm")
+    .addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const {
+            data: { user }
+        } = await supabaseClient.auth.getUser();
+
+        if (!user) {
+            alert("Please login first.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        const name =
+            document.getElementById("name").value.trim();
+
+        const age =
+            document.getElementById("age").value;
+
+        const city =
+            document.getElementById("city").value.trim();
+
+        const gender =
+            document.getElementById("gender").value;
+
+        const lookingFor =
+            document.getElementById("lookingFor").value;
+
+        const interests =
+            document.getElementById("interests").value.trim();
+
+        const about =
+            document.getElementById("about").value.trim();
+
+
+        console.log({
+            user_id: user.id,
+            name: name,
+            age: age,
+            city: city,
+            gender: gender,
+            looking_for: lookingFor,
+            interests: interests,
+            about: about
+        });
+
+
+        alert("Profile information saved successfully!");
+
+    });
+
+</script>
+
+</body>
+</html>
