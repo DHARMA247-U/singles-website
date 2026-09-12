@@ -121,28 +121,36 @@ const supabase = window.supabase.createClient(
 async function signupUser(event) {
     event.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    try {
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
 
-    const { data, error } = await supabase.auth.signUp({
-        email: email,
-        password: password,
-        options: {
-            data: {
-                name: name
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    name: name
+                }
             }
+        });
+
+        if (error) {
+            alert("Signup error: " + error.message);
+            return;
         }
-    });
 
-    if (error) {
-        alert(error.message);
-        return;
+        if (data.user) {
+            alert("Account created successfully! Check your email if confirmation is required.");
+            window.location.href = "login.html";
+        } else {
+            alert("Signup completed. Please check your email.");
+        }
+
+    } catch (err) {
+        alert("Something went wrong: " + err.message);
     }
-
-    alert("Account created successfully!");
-
-    window.location.href = "login.html";
 }
 </script>
 
