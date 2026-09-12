@@ -113,7 +113,7 @@
 const SUPABASE_URL = "https://hzlbpkxetsosxazhxtit.supabase.co";
 const SUPABASE_KEY = "sb_publishable_Re15CBdLhXfFKLbee_037g_kx9G-W-8";
 
-const supabase = window.supabase.createClient(
+const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
@@ -126,7 +126,7 @@ async function signupUser(event) {
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
 
-        const { data, error } = await supabase.auth.signUp({
+        const { data, error } = await supabaseClient.auth.signUp({
             email: email,
             password: password,
             options: {
